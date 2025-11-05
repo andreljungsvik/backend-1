@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Böcker per genre</title>
+</head>
+<body>
+<div th:if="${genre != null and !#lists.isEmpty(genre)}">
+    <h1 th:text="${genre[0].genre}"></h1>
+    <ul>
+        <li th:each="g : ${genre}">
+            <span th:text="${g.title}"></span> -
+            <span th:text="${g.author}"></span>
+        </li>
+    </ul>
+</div>
+
+<div th:if="${genre == null or #lists.isEmpty(genre)}">
+    <h1>Alla genrer</h1>
+    <ul>
+        <li th:each="g : ${allGenres}">
+            <a th:href="@{/genre(type=${g})}" th:text="${g}"></a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
